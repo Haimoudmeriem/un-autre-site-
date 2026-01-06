@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - Mivara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* ========== NAVIGATION CORRIGÉE ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: #4361ee;
+        }
+        
+        .nav-menu a.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+        
+        .btn-audit {
+            background: linear-gradient(135deg, #f72585, #ff4081);
+            color: white !important;
+            padding: 10px 20px !important;
+            border-radius: 25px;
+            font-weight: 600 !important;
+        }
+        
+        /* ========== HERO ========== */
+        .hero-about {
+            padding: 100px 0 40px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .hero-about h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero-about p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+        
+        /* ========== SECTIONS ========== */
+        .section {
+            padding: 50px 20px;
+        }
+        
+        .section h2 {
+            font-size: 28px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .section p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        /* ========== ABOUT GRID ========== */
+        .about-grid {
+            display: block;
+        }
+        
+        .about-image {
+            margin-bottom: 30px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .feature-text h4 {
+            color: #1a1a2e;
+            margin-bottom: 5px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .feature-text p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+        
+        /* ========== VALUES ========== */
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .value-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .value-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* ========== STATS ========== */
+        .stats-section {
+            background: linear-gradient(135deg, #3a0ca3, #4361ee);
+            color: white;
+            padding: 50px 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* ========== TEAM ========== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .team-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #4361ee;
+        }
+        
+        .team-card h3 {
+            font-size: 20px;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .team-card p {
+            font-size: 14px;
+            color: #4361ee;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .team-card .desc {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        /* ========== CTA ========== */
+        .cta-section {
+            background: #f72585;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 30px 20px;
+        }
+        
+        .cta-section h2 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #f72585;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* ========== FOOTER ========== */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+        
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+        
+        .footer p {
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .footer-col h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-col a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col a:hover {
+            color: #4361ee;
+        }
+        
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+            text-align: center;
+            opacity: 0.6;
+        }
+        
+        /* ========== FLOATING BUTTONS ========== */
+        .float-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .float-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp {
+            background: #25D366;
+        }
+        
+        .phone {
+            background: #4361ee;
+        }
+        
+        /* ========== MEDIA QUERIES - MOBILE ========== */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                gap: 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+            }
+            
+            .nav-menu a {
+                display: block;
+                padding: 15px;
+                border-bottom: 1px solid #eee;
+                width: 100%;
+            }
+            
+            .btn-audit {
+                margin-top: 10px;
+                text-align: center;
+            }
+        }
+        
+        /* ========== MEDIA QUERIES - DESKTOP ========== */
+        @media (min-width: 768px) {
+            html {
+                font-size: 17px;
+            }
+            
+            .hero-about {
+                padding: 140px 0 60px;
+            }
+            
+            .hero-about h1 {
+                font-size: 42px;
+            }
+            
+            .hero-about p {
+                font-size: 20px;
+            }
+            
+            .section {
+                padding: 80px 20px;
+            }
+            
+            .section h2 {
+                font-size: 36px;
+            }
+            
+            .about-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+                align-items: center;
+            }
+            
+            .about-image {
+                margin-bottom: 0;
+            }
+            
+            .about-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .feature-item {
+                padding: 25px;
+            }
+            
+            .feature-text h4 {
+                font-size: 20px;
+            }
+            
+            .feature-text p {
+                font-size: 16px;
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+            }
+            
+            .stat-number {
+                font-size: 48px;
+            }
+            
+            .stat-text {
+                font-size: 16px;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            
+            .team-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .team-card h3 {
+                font-size: 22px;
+            }
+            
+            .team-card p {
+                font-size: 16px;
+            }
+            
+            .team-card .desc {
+                font-size: 16px;
+            }
+            
+            .cta-section {
+                padding: 60px;
+                margin: 50px auto;
+                max-width: 800px;
+            }
+            
+            .cta-section h2 {
+                font-size: 36px;
+            }
+            
+            .cta-section p {
+                font-size: 18px;
+            }
+            
+            .btn {
+                padding: 18px 40px;
+                font-size: 18px;
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 50px;
+            }
+            
+            .footer-col h3 {
+                font-size: 18px;
+            }
+            
+            .footer-col a {
+                font-size: 16px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .feature-text p {
+                font-size: 14px;
+            }
+        }
+        
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Corrigée -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="home.html" class="logo">
+                <img src="images/logo1.png" alt="Mivara - Agence de Communication Digitale" class="logo-img">
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="home.html">Accueil</a></li>
+                <li><a href="about.html" class="active">À Propos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="btn-audit">Audit Gratuit</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-about">
+        <div class="container">
+            <h1>À Propos de Mivara</h1>
+            <p>Votre partenaire en communication digitale depuis 2018</p>
+        </div>
+    </section>
+
+    <!-- Notre Histoire -->
+    <section class="section">
+        <div class="container">
+            <h2>Notre Histoire</h2>
+            <div class="about-grid fade-in">
+                <div class="about-text">
+                    <p>Fondée en 2018, Mivara est née d'une passion pour le digital et d'une volonté d'accompagner les entreprises dans leur transformation numérique.</p>
+                    <p>Aujourd'hui, nous sommes fiers d'avoir accompagné plus de 150 clients vers le succès digital avec des solutions innovantes et performantes.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Innovation</h4>
+                                <p>À la pointe des technologies digitales</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Approche Client</h4>
+                                <p>Solutions sur mesure pour chaque projet</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Résultats</h4>
+                                <p>Engagés sur des résultats mesurables</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Confiance</h4>
+                                <p>Relations transparentes et durables</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/illustration-de-style-artistique-numerique-du-graphiste.jpg" alt="Équipe Mivara">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Valeurs -->
+    <section class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>Nos Valeurs</h2>
+            <div class="values-grid fade-in">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Solutions digitales innovantes et avant-gardistes</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Transparence</h3>
+                    <p>Relations honnêtes et claires à chaque étape</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>Travail de qualité exceptionnelle sur chaque projet</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>Travail main dans la main pour atteindre vos objectifs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="150">150+</span>
+                    <div class="stat-text">Clients</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="300">300+</span>
+                    <div class="stat-text">Projets</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="98">98%</span>
+                    <div class="stat-text">Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="24">24/7</span>
+                    <div class="stat-text">Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Équipe -->
+    <section class="section">
+        <div class="container">
+            <h2>Notre Équipe</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Des experts passionnés par le digital</p>
+            
+            <div class="team-grid fade-in">
+                <div class="team-card">
+                    <img src="images/ChatGPT Image 6 janv. 2026, 16_11_52.png" alt="Thomas Martin" class="team-img">
+                    <h3>Souphia</h3>
+                    <p>Directrice Général</p>
+                    <p class="desc">10 ans d'expérience dans le digital, vision stratégique.</p>
+                </div>
+                
+                <div class="team-card">
+                    <img src="images/ChatGPT Image 6 janv. 2026, 16_11_52.png" alt="Sophie Laurent" class="team-img">
+                    <h3>Thomas</h3>
+                    <p>Directeur Créative</p>
+                    <p class="desc">Expert en design UX/UI, expériences digitales mémorables.</p>
+                </div>
+                
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Alexandre Dubois" class="team-img">
+                    <h3>Alexandre Dubois</h3>
+                    <p>Marketing Digital</p>
+                    <p class="desc">Spécialiste campagnes publicitaires et SEO.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section fade-in">
+        <h2>Prêt à démarrer ?</h2>
+        <p>Contactez-nous pour discuter de votre projet</p>
+        <a href="contact.html" class="btn">Nous contacter</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="images/logo1.png" alt="Mivara Logo">
+            </div>
+            
+            <p>Agence de communication digitale spécialisée dans la création de sites web et campagnes publicitaires.</p>
+            
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h3>Pages</h3>
+                    <ul>
+                        <li><a href="home.html">Accueil</a></li>
+                        <li><a href="about.html">À Propos</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#web">Sites Web</a></li>
+                        <li><a href="services.html#ads">Meta Ads</a></li>
+                        <li><a href="services.html#strategy">Stratégie</a></li>
+                        <li><a href="contact.html">Audit Gratuit</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
+                        <li><i class="fas fa-envelope"></i> contact@mivara.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Paris, France</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Réseaux</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mivara. Tous droits réservés.</p>
+                <p>contact@mivara.com | +33 1 23 45 67 89</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Boutons flottants -->
+    <div class="float-buttons">
+        <a href="https://wa.me/33123456789" class="float-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+33123456789" class="float-btn phone">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+    <script>
+        // Menu mobile
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+        }
+        
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Animation des statistiques
+        document.addEventListener('DOMContentLoaded', function() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const stat = entry.target;
+                        const target = parseInt(stat.getAttribute('data-count'));
+                        let count = 0;
+                        const increment = target / 50;
+                        
+                        const timer = setInterval(() => {
+                            count += increment;
+                            if (count >= target) {
+                                count = target;
+                                clearInterval(timer);
+                            }
+                            stat.textContent = Math.floor(count) + (stat.textContent.includes('%') ? '%' : '+');
+                        }, 30);
+                        
+                        observer.unobserve(stat);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            stats.forEach(stat => observer.observe(stat));
+            
+            // Animation au scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.6s ease-out forwards';
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(el => {
+                el.style.opacity = '0';
+                fadeObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
